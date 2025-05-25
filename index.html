@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEMPLA - Estrutura Organizacional</title>
+    
+    <!-- INSTRUÇÕES PARA USO OFFLINE:
+    1. Salve este arquivo como "sempla.html" (extensão .html é obrigatória)
+    2. Clique duas vezes no arquivo OU arraste para o navegador
+    3. Funciona em Chrome, Safari, Firefox, Edge sem internet
+    -->
+    
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-light: #3b82f6;
+            --secondary: #f8fafc;
+            --accent: #059669;
+            --text-dark: #0f172a;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border: #cbd5e1;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #1e40af 0%, #059669 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .logo-text p {
+            font-size: 0.875rem;
+            color: var(--text-medium);
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--text-medium);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            color: var(--primary);
+            background: rgba(30, 64, 175, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .status {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 2rem auto;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            margin: 2rem auto;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            max-width: 1200px;
+        }
+
+        .search-box {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--secondary);
+            border-radius: 12px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .filters {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            color: var(--text-medium);
+            line-height: 1.5;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--secondary);
+            color: var(--text-dark);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        /* Organogram */
+        .organogram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            background: var(--secondary);
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .org-level {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .org-node {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            min-width: 200px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .org-node:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .org-node.level-1 {
+            background: var(--primary);
+            color: white;
+        }
+
+        .org-node.level-2 {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        .org-node.level-3 {
+            background: var(--accent);
+            color: white;
+        }
+
+        .org-node-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .org-node-subtitle {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table th {
+            background: var(--secondary);
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .data-table tr:hover {
+            background: var(--secondary);
+        }
+
+        /* Competencies */
+        .competencies-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .competency-item {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .competency-item:hover {
+            background: white;
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .competency-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .competency-description {
+            color: var(--text-medium);
+            font-size: 0.875rem;
+        }
+
+        .competency-details {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .competency-details.active {
+            display: block;
+        }
+
+        .competency-details ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .competency-details li {
+            padding: 0.25rem 0;
+            position: relative;
+        }
+
+        .competency-details li::before {
+            content: '→';
+            position: absolute;
+            left: -1rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Legal Document */
+        .legal-document {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .document-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .document-header h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .document-chapter {
+            margin: 2rem 0;
+        }
+
+        .document-chapter h2 {
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 2rem 0 1.5rem 0;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .article {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(248, 250, 252, 0.5);
+            border-radius: 6px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .article p {
+            margin: 0.75rem 0;
+            text-align: justify;
+        }
+
+        .article strong {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .org-level {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .org-node {
+                min-width: 250px;
+            }
+
+            .modal-content {
+                margin: 1rem;
+                max-height: calc(100vh - 2rem);
+            }
+
+            .modal-header,
+            .modal-body {
+                padding: 1.5rem;
+            }
+
+            .main-content {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Debug styles */
+        .debug {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 2000;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Debug Container -->
+    <div id="debug" class="debug" style="display: none;">
+        <div>Status: <span id="debug-status">Carregando...</span></div>
+        <div>Cards: <span id="debug-cards">0</span></div>
+        <div>Modais: <span id="debug-modals">0</span></div>
+        <div>JS: <span id="debug-js">Não carregado</span></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">S</div>
+                    <div class="logo-text">
+                        <h1>SEMPLA</h1>
+                        <p>Barcarena - PA</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul class="nav">
+                        <li><a href="#inicio" class="active">Início</a></li>
+                        <li><a href="#estrutura">Estrutura</a></li>
+                        <li><a href="#competencias">Competências</a></li>
+                        <li><a href="#cargos">Cargos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Secretaria Municipal de Planejamento e Articulação Institucional</h1>
+            <p>Proposta de Reestruturação Organofuncional</p>
+            <p>Explore de forma dinâmica e interativa a estrutura, competências e funcionamento da SEMPLA.</p>
+            <div class="status">
+                <span id="status-indicator">🔄 Inicializando sistema...</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Search Section -->
+            <section class="search-box">
+                <input 
+                    type="search" 
+                    class="search-input" 
+                    placeholder="🔍 Buscar por departamentos, cargos, competências..."
+                    id="searchInput"
+                >
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="departamentos">Departamentos</button>
+                    <button class="filter-btn" data-filter="competencias">Competências</button>
+                    <button class="filter-btn" data-filter="cargos">Cargos</button>
+                    <button class="filter-btn" data-filter="sistema">Sistema</button>
+                </div>
+            </section>
+
+            <!-- Cards Grid -->
+            <section class="cards-grid" id="cardsGrid">
+                <!-- Estrutura Geral -->
+                <div class="card" data-category="departamentos" data-modal="estrutura">
+                    <div class="card-icon">🏢</div>
+                    <h3 class="card-title">Estrutura Geral</h3>
+                    <p class="card-description">
+                        Organograma completo da SEMPLA com todos os departamentos, hierarquia e vinculações.
+                    </p>
+                    <div class="card-badge">Lei 2025</div>
+                </div>
+
+                <!-- Departamento de Planejamento -->
+                <div class="card" data-category="departamentos" data-modal="planejamento">
+                    <div class="card-icon">📊</div>
+                    <h3 class="card-title">Depto. Planejamento</h3>
+                    <p class="card-description">
+                        Coordenação do planejamento estratégico, territorial, gestão orçamentária e modernização.
+                    </p>
+                    <div class="card-badge">5 Áreas</div>
+                </div>
+
+                <!-- Departamento de Projetos -->
+                <div class="card" data-category="departamentos" data-modal="projetos">
+                    <div class="card-icon">💼</div>
+                    <h3 class="card-title">Depto. Projetos</h3>
+                    <p class="card-description">
+                        Captação de recursos, elaboração de projetos, gestão de convênios e parcerias.
+                    </p>
+                    <div class="card-badge">4 Áreas</div>
+                </div>
+
+                <!-- Departamento de Coordenação -->
+                <div class="card" data-category="departamentos" data-modal="coordenacao">
+                    <div class="card-icon">🤝</div>
+                    <h3 class="card-title">Depto. Coordenação</h3>
+                    <p class="card-description">
+                        Coordenação política, secretaria de governo, relações institucionais e participação social.
+                    </p>
+                    <div class="card-badge">6 Áreas</div>
+                </div>
+
+                <!-- Competências Gerais -->
+                <div class="card" data-category="competencias" data-modal="competencias">
+                    <div class="card-icon">⚖️</div>
+                    <h3 class="card-title">Competências Gerais</h3>
+                    <p class="card-description">
+                        Todas as competências e atribuições da SEMPLA conforme legislação municipal.
+                    </p>
+                    <div class="card-badge">9 Itens</div>
+                </div>
+
+                <!-- Quadro de Cargos -->
+                <div class="card" data-category="cargos" data-modal="cargos">
+                    <div class="card-icon">👥</div>
+                    <h3 class="card-title">Quadro de Cargos</h3>
+                    <p class="card-description">
+                        Estrutura completa de cargos comissionados e efetivos com valores e quantidades.
+                    </p>
+                    <div class="card-badge">59 Cargos</div>
+                </div>
+
+                <!-- Sistema Municipal -->
+                <div class="card" data-category="sistema" data-modal="sistema">
+                    <div class="card-icon">🌐</div>
+                    <h3 class="card-title">Sistema Municipal</h3>
+                    <p class="card-description">
+                        Sistema Municipal de Planejamento: instâncias, instrumentos e processos de governança.
+                    </p>
+                    <div class="card-badge">SMP</div>
+                </div>
+
+                <!-- Gabinete do Secretário -->
+                <div class="card" data-category="departamentos" data-modal="gabinete">
+                    <div class="card-icon">🎯</div>
+                    <h3 class="card-title">Gabinete do Secretário</h3>
+                    <p class="card-description">
+                        Estrutura de direção superior: Secretário, Adjunto, Chefia de Gabinete e assessorias.
+                    </p>
+                    <div class="card-badge">5 Cargos</div>
+                </div>
+
+                <!-- Minuta da Lei -->
+                <div class="card" data-category="competencias" data-modal="minuta">
+                    <div class="card-icon">📄</div>
+                    <h3 class="card-title">Minuta da Lei - Íntegra</h3>
+                    <p class="card-description">
+                        Texto completo da minuta que dispõe sobre a estrutura organizacional da SEMPLA.
+                    </p>
+                    <div class="card-badge">Completa</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title" class="modal-title">Título do Modal</h2>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Conteúdo será inserido aqui -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sistema de debug
+        function updateDebug(status, extra = {}) {
+            const debug = document.getElementById('debug');
+            const statusEl = document.getElementById('debug-status');
+            const cardsEl = document.getElementById('debug-cards');
+            const modalsEl = document.getElementById('debug-modals');
+            const jsEl = document.getElementById('debug-js');
+            
+            if (debug && statusEl) {
+                statusEl.textContent = status;
+                cardsEl.textContent = document.querySelectorAll('.card').length;
+                modalsEl.textContent = document.querySelectorAll('.modal').length;
+                jsEl.textContent = 'Carregado';
+                
+                // Mostrar debug apenas se houver problemas
+                if (status.includes('Erro') || window.location.search.includes('debug')) {
+                    debug.style.display = 'block';
+                }
+            }
+            console.log('SEMPLA Debug:', status, extra);
+        }
+
+        // Dados da estrutura organizacional
+        const sempla = {
+            estrutura: {
+                title: 'Estrutura Organizacional SEMPLA',
+                description: 'Organograma completo da Secretaria Municipal de Planejamento e Articulação Institucional',
+                organograma: `
+                    <div class="organogram">
+                        <div class="org-level">
+                            <div class="org-node level-1">
+                                <div class="org-node-title">PREFEITO MUNICIPAL</div>
+                                <div class="org-node-subtitle">Autoridade Máxima</div>
+                            </div>
+                        </div>
+                        
+                        <div class="org-level">
+                            <div class="org-node level-1">
+                                <div class="org-node-title">SECRETÁRIO MUNICIPAL</div>
+                                <div class="org-node-subtitle">Agente Político</div>
+                            </div>
+                        </div>
+                        
+                        <div class="org-level">
+                            <div class="org-node level-2">
+                                <div class="org-node-title">SECRETÁRIO ADJUNTO</div>
+                                <div class="org-node-subtitle">CPC 09 - R$ 10.584,00</div>
+                            </div>
+                        </div>
+                        
+                        <div class="org-level">
+                            <div class="org-node level-3">
+                                <div class="org-node-title">CHEFIA DE GABINETE</div>
+                                <div class="org-node-subtitle">CPC 07 - R$ 6.200,00</div>
+                            </div>
+                            <div class="org-node level-3">
+                                <div class="org-node-title">ASSESSORIA JURÍDICA</div>
+                                <div class="org-node-subtitle">CPC 06 - R$ 5.295,98</div>
+                            </div>
+                            <div class="org-node level-3">
+                                <div class="org-node-title">ASSESSORIA COMUNICAÇÃO</div>
+                                <div class="org-node-subtitle">CPC 06 - R$ 5.295,98</div>
+                            </div>
+                        </div>
+                        
+                        <div class="org-level">
+                            <div class="org-node level-2">
+                                <div class="org-node-title">DEPTO. PLANEJAMENTO</div>
+                                <div class="org-node-subtitle">CPC 08 - R$ 7.408,80</div>
+                            </div>
+                            <div class="org-node level-2">
+                                <div class="org-node-title">DEPTO. PROJETOS</div>
+                                <div class="org-node-subtitle">CPC 08 - R$ 7.408,80</div>
+                            </div>
+                            <div class="org-node level-2">
+                                <div class="org-node-title">DEPTO. COORDENAÇÃO</div>
+                                <div class="org-node-subtitle">CPC 08 - R$ 7.408,80</div>
+                            </div>
+                        </div>
+                        
+                        <div class="org-level">
+                            <div class="org-node level-3">
+                                <div class="org-node-title">6 COORDENADORES</div>
+                                <div class="org-node-subtitle">CPC 05 - R$ 4.500,00</div>
+                            </div>
+                            <div class="org-node level-3">
+                                <div class="org-node-title">4 ASSESSORES TÉCNICOS</div>
+                                <div class="org-node-subtitle">CPC 03 - R$ 2.961,00</div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            
+            planejamento: {
+                title: 'Departamento de Planejamento e Gestão Orçamentária',
+                description: 'Coordenação do planejamento estratégico, territorial e gestão orçamentária',
+                competencias: [
+                    {
+                        area: 'Planejamento Estratégico',
+                        items: [
+                            'Coordenar a elaboração do planejamento estratégico municipal',
+                            'Desenvolver metodologias de planejamento',
+                            'Elaborar estudos prospectivos e cenários',
+                            'Coordenar a formulação de políticas integradas'
+                        ]
+                    },
+                    {
+                        area: 'Planejamento Territorial',
+                        items: [
+                            'Coordenar a elaboração do Plano Diretor Municipal',
+                            'Desenvolver estudos de ordenamento territorial',
+                            'Elaborar planos setoriais de desenvolvimento',
+                            'Monitorar indicadores urbanos'
+                        ]
+                    },
+                    {
+                        area: 'Gestão Orçamentária',
+                        items: [
+                            'Coordenar a elaboração do PPA, LDO e LOA',
+                            'Orientar os órgãos na programação orçamentária',
+                            'Consolidar as propostas orçamentárias setoriais',
+                            'Monitorar a execução orçamentária e financeira'
+                        ]
+                    },
+                    {
+                        area: 'Modernização e Informação',
+                        items: [
+                            'Propor projetos de modernização administrativa',
+                            'Implementar metodologias de gestão por resultados',
+                            'Desenvolver sistemas de informação',
+                            'Coordenar observatório de políticas públicas'
+                        ]
+                    },
+                    {
+                        area: 'Monitoramento e Avaliação',
+                        items: [
+                            'Desenvolver sistema de indicadores',
+                            'Monitorar programas e projetos',
+                            'Realizar avaliação de políticas públicas',
+                            'Produzir relatórios gerenciais'
+                        ]
+                    }
+                ]
+            },
+            
+            projetos: {
+                title: 'Departamento de Projetos e Captação de Recursos',
+                description: 'Captação de recursos, elaboração de projetos e gestão de convênios',
+                competencias: [
+                    {
+                        area: 'Captação de Recursos',
+                        items: [
+                            'Prospectar fontes de financiamento',
+                            'Mapear editais e oportunidades',
+                            'Desenvolver estratégias de captação',
+                            'Manter cadastro de fontes financiadoras'
+                        ]
+                    },
+                    {
+                        area: 'Elaboração de Projetos',
+                        items: [
+                            'Elaborar projetos técnicos para captação',
+                            'Desenvolver propostas para editais',
+                            'Estruturar planos de trabalho',
+                            'Assessorar órgãos na elaboração de projetos'
+                        ]
+                    },
+                    {
+                        area: 'Gestão de Convênios',
+                        items: [
+                            'Gerenciar a execução de convênios',
+                            'Monitorar cronogramas e metas',
+                            'Coordenar prestações de contas',
+                            'Manter sistema de controle'
+                        ]
+                    },
+                    {
+                        area: 'Parcerias Estratégicas',
+                        items: [
+                            'Identificar oportunidades de parcerias',
+                            'Estruturar modelos de PPPs',
+                            'Elaborar estudos de viabilidade',
+                            'Articular cooperações técnicas'
+                        ]
+                    }
+                ]
+            },
+            
+            coordenacao: {
+                title: 'Departamento de Coordenação Governamental',
+                description: 'Coordenação política, relações institucionais e participação social',
+                competencias: [
+                    {
+                        area: 'Coordenação Política',
+                        items: [
+                            'Coordenar a execução das decisões do Prefeito',
+                            'Acompanhar a implementação do programa de governo',
+                            'Supervisionar projetos prioritários',
+                            'Coordenar ações emergenciais'
+                        ]
+                    },
+                    {
+                        area: 'Secretaria de Governo',
+                        items: [
+                            'Secretariar reuniões do secretariado',
+                            'Elaborar pautas e atas de reuniões',
+                            'Coordenar grupos de trabalho intersetoriais',
+                            'Facilitar a comunicação entre secretarias'
+                        ]
+                    },
+                    {
+                        area: 'Relações Institucionais',
+                        items: [
+                            'Coordenar relacionamento com o Poder Legislativo',
+                            'Representar o município perante outros entes',
+                            'Articular pleitos e demandas municipais',
+                            'Coordenar participação em fóruns'
+                        ]
+                    },
+                    {
+                        area: 'Atos Oficiais',
+                        items: [
+                            'Coordenar elaboração de decretos e portarias',
+                            'Supervisionar a publicação oficial',
+                            'Manter arquivo de atos normativos',
+                            'Orientar sobre técnica legislativa'
+                        ]
+                    },
+                    {
+                        area: 'Participação Social',
+                        items: [
+                            'Coordenar diálogo com a sociedade civil',
+                            'Facilitar processos participativos',
+                            'Coordenar audiências públicas',
+                            'Coordenar funcionamento dos conselhos municipais'
+                        ]
+                    },
+                    {
+                        area: 'Cerimonial',
+                        items: [
+                            'Organizar agenda oficial do Prefeito',
+                            'Coordenar cerimonial público',
+                            'Organizar eventos oficiais',
+                            'Supervisionar protocolo municipal'
+                        ]
+                    }
+                ]
+            },
+            
+            competencias: {
+                title: 'Competências Gerais da SEMPLA',
+                description: 'Todas as competências e atribuições conforme Art. 3º da Lei',
+                lista: [
+                    'Coordenar o sistema de planejamento municipal e a elaboração dos instrumentos de gestão',
+                    'Exercer as funções de Casa Civil no âmbito da administração municipal',
+                    'Promover a modernização administrativa e a inovação na gestão pública',
+                    'Coordenar a captação de recursos e o desenvolvimento de parcerias',
+                    'Gerenciar o sistema de informações municipais',
+                    'Articular as relações institucionais com outros entes e poderes',
+                    'Monitorar e avaliar as políticas públicas e programas governamentais',
+                    'Promover a transparência e o controle social da gestão pública',
+                    'Exercer outras competências correlatas'
+                ]
+            },
+            
+            cargos: {
+                title: 'Quadro de Cargos SEMPLA',
+                description: 'Estrutura completa de cargos comissionados e efetivos',
+                comissionados: [
+                    { cargo: 'Secretário Municipal', codigo: 'Agente Político', valor: 'Subsídio', quantidade: 1 },
+                    { cargo: 'Secretário Adjunto', codigo: 'CPC 09', valor: 'R$ 10.584,00', quantidade: 1 },
+                    { cargo: 'Diretor de Departamento', codigo: 'CPC 08', valor: 'R$ 7.408,80', quantidade: 3 },
+                    { cargo: 'Chefe de Gabinete', codigo: 'CPC 07', valor: 'R$ 6.200,00', quantidade: 1 },
+                    { cargo: 'Assessor Jurídico', codigo: 'CPC 06', valor: 'R$ 5.295,98', quantidade: 1 },
+                    { cargo: 'Assessor de Comunicação', codigo: 'CPC 06', valor: 'R$ 5.295,98', quantidade: 1 },
+                    { cargo: 'Coordenador', codigo: 'CPC 05', valor: 'R$ 4.500,00', quantidade: 6 },
+                    { cargo: 'Assessor Técnico', codigo: 'CPC 03', valor: 'R$ 2.961,00', quantidade: 4 }
+                ]
+            },
+            
+            sistema: {
+                title: 'Sistema Municipal de Planejamento - SMP',
+                description: 'Conjunto articulado de órgãos, instrumentos e processos para o planejamento integrado',
+                principios: [
+                    'Integração entre instrumentos de planejamento',
+                    'Participação democrática',
+                    'Transparência dos atos',
+                    'Sustentabilidade e visão de longo prazo',
+                    'Eficiência das políticas públicas'
+                ]
+            },
+            
+            gabinete: {
+                title: 'Gabinete do Secretário',
+                description: 'Estrutura de direção superior e assessoramento direto',
+                cargos: [
+                    {
+                        cargo: 'Secretário Municipal',
+                        competencias: [
+                            'Exercer a direção superior da Secretaria',
+                            'Assessorar diretamente o Prefeito em matérias de planejamento',
+                            'Estabelecer diretrizes e metas para os departamentos',
+                            'Aprovar planos, programas e projetos',
+                            'Representar o município quando designado'
+                        ]
+                    },
+                    {
+                        cargo: 'Secretário Adjunto',
+                        competencias: [
+                            'Substituir o Secretário em suas ausências',
+                            'Auxiliar na coordenação das atividades da Secretaria',
+                            'Supervisionar a execução dos planos de trabalho',
+                            'Coordenar a integração entre as áreas'
+                        ]
+                    }
+                ]
+            },
+            
+            minuta: {
+                title: 'Minuta da Lei Municipal - Íntegra',
+                description: 'Texto completo da minuta que dispõe sobre a estrutura organizacional da SEMPLA',
+                conteudo: `
+                    <div class="legal-document">
+                        <div class="document-header">
+                            <h1>LEI MUNICIPAL Nº _____, DE ___ DE _________ DE 2025</h1>
+                            <p><strong>Dispõe sobre a estrutura organizacional e as competências da Secretaria Municipal de Planejamento e Articulação Institucional - SEMPLA, e dá outras providências.</strong></p>
+                        </div>
+
+                        <div style="text-align: center; margin: 2rem 0; padding: 1rem; background: #1e40af; color: white; border-radius: 8px;">
+                            <strong>📄 DOCUMENTO LEGAL COMPLETO</strong><br>
+                            Texto integral da minuta conforme proposta de reestruturação organizacional
+                        </div>
+
+                        <div class="document-authority">
+                            <p>O <strong>PREFEITO MUNICIPAL DE BARCARENA</strong>, Estado do Pará, no uso de suas atribuições legais, faz saber que a Câmara Municipal aprovou e ele sanciona a seguinte Lei:</p>
+                        </div>
+
+                        <div class="document-chapter">
+                            <h2>CAPÍTULO I<br>DA NATUREZA, FINALIDADE E ESTRUTURA</h2>
+                            
+                            <div class="article">
+                                <p><strong>Art. 1º</strong> - A Secretaria Municipal de Planejamento e Articulação Institucional - SEMPLA é órgão estratégico da administração direta, vinculado ao Gabinete do Prefeito, responsável pela coordenação do planejamento integrado, gestão orçamentária e articulação institucional do Município de Barcarena.</p>
+                                
+                                <p><strong>§ 1º</strong> - A SEMPLA atuará como órgão central dos sistemas municipais de planejamento, orçamento, modernização administrativa e coordenação governamental.</p>
+                                
+                                <p><strong>§ 2º</strong> - No exercício de suas competências, a SEMPLA observará os princípios da gestão democrática, transparência, eficiência, inovação e sustentabilidade.</p>
+                            </div>
+
+                            <div class="article">
+                                <p><strong>Art. 2º</strong> - A estrutura organizacional da SEMPLA compreende:</p>
+                                
+                                <p><strong>I - Gabinete do Secretário:</strong><br>
+                                a) Secretário Municipal;<br>
+                                b) Secretário Adjunto;<br>
+                                c) Chefia de Gabinete;<br>
+                                d) Assessoria Jurídica;<br>
+                                e) Assessoria de Comunicação.</p>
+
+                                <p><strong>II - Órgãos de Execução:</strong><br>
+                                a) Departamento de Planejamento e Gestão Orçamentária;<br>
+                                b) Departamento de Projetos e Captação de Recursos;<br>
+                                c) Departamento de Coordenação Governamental.</p>
+
+                                <p><strong>III - Órgão Vinculado:</strong><br>
+                                a) Sistema Municipal de Planejamento.</p>
+                            </div>
+                        </div>
+
+                        <div class="document-chapter">
+                            <h2>CAPÍTULO II<br>DAS COMPETÊNCIAS GERAIS</h2>
+                            
+                            <div class="article">
+                                <p><strong>Art. 3º</strong> - Compete à Secretaria Municipal de Planejamento e Articulação Institucional:</p>
+                                
+                                <p><strong>I</strong> - Coordenar o sistema de planejamento municipal e a elaboração dos instrumentos de gestão;<br>
+                                <strong>II</strong> - Exercer as funções de Casa Civil no âmbito da administração municipal;<br>
+                                <strong>III</strong> - Promover a modernização administrativa e a inovação na gestão pública;<br>
+                                <strong>IV</strong> - Coordenar a captação de recursos e o desenvolvimento de parcerias;<br>
+                                <strong>V</strong> - Gerenciar o sistema de informações municipais;<br>
+                                <strong>VI</strong> - Articular as relações institucionais com outros entes e poderes;<br>
+                                <strong>VII</strong> - Monitorar e avaliar as políticas públicas e programas governamentais;<br>
+                                <strong>VIII</strong> - Promover a transparência e o controle social da gestão pública;<br>
+                                <strong>IX</strong> - Exercer outras competências correlatas.</p>
+                            </div>
+                        </div>
+
+                        <div class="document-chapter">
+                            <h2>CAPÍTULO III<br>DAS COMPETÊNCIAS ESPECÍFICAS</h2>
+                            
+                            <h3>Seção I<br>Do Gabinete do Secretário</h3>
+                            
+                            <div class="article">
+                                <p><strong>Art. 4º</strong> - Ao Secretário Municipal compete:</p>
+                                
+                                <p><strong>I</strong> - Exercer a direção superior da Secretaria;<br>
+                                <strong>II</strong> - Assessorar diretamente o Prefeito em matérias de planejamento e coordenação governamental;<br>
+                                <strong>III</strong> - Estabelecer diretrizes e metas para os departamentos;<br>
+                                <strong>IV</strong> - Aprovar planos, programas e projetos;<br>
+                                <strong>V</strong> - Representar o município quando designado;<br>
+                                <strong>VI</strong> - Coordenar o relacionamento institucional com os demais poderes;<br>
+                                <strong>VII</strong> - Expedir atos normativos da Secretaria;<br>
+                                <strong>VIII</strong> - Exercer outras atribuições inerentes ao cargo.</p>
+                            </div>
+
+                            <div class="article">
+                                <p><strong>Art. 5º</strong> - Ao Secretário Adjunto compete:</p>
+                                
+                                <p><strong>I</strong> - Substituir o Secretário em suas ausências;<br>
+                                <strong>II</strong> - Auxiliar na coordenação das atividades da Secretaria;<br>
+                                <strong>III</strong> - Supervisionar a execução dos planos de trabalho;<br>
+                                <strong>IV</strong> - Coordenar a integração entre as áreas;<br>
+                                <strong>V</strong> - Exercer as atribuições delegadas pelo Secretário.</p>
+                            </div>
+
+                            <div class="article">
+                                <p><strong>Art. 6º</strong> - À Chefia de Gabinete compete:</p>
+                                
+                                <p><strong>I</strong> - Coordenar as atividades administrativas do Gabinete;<br>
+                                <strong>II</strong> - Organizar a agenda oficial do Secretário;<br>
+                                <strong>III</strong> - Supervisionar os serviços de protocolo e expediente;<br>
+                                <strong>IV</strong> - Coordenar o atendimento ao público;<br>
+                                <strong>V</strong> - Preparar a correspondência oficial;<br>
+                                <strong>VI</strong> - Exercer outras atividades determinadas pelo Secretário.</p>
+                            </div>
+
+                            <div class="article">
+                                <p><strong>Art. 7º</strong> - À Assessoria Jurídica compete:</p>
+                                
+                                <p><strong>I</strong> - Prestar assessoramento jurídico às unidades da Secretaria;<br>
+                                <strong>II</strong> - Examinar e emitir pareceres sobre contratos e convênios;<br>
+                                <strong>III</strong> - Analisar a legalidade dos atos administrativos;<br>
+                                <strong>IV</strong> - Acompanhar processos de interesse da Secretaria;<br>
+                                <strong>V</strong> - Orientar sobre legislação pertinente;<br>
+                                <strong>VI</strong> - Exercer outras atividades de natureza jurídica.</p>
+                            </div>
+
+                            <div class="article">
+                                <p><strong>Art. 8º</strong> - À Assessoria de Comunicação compete:</p>
+                                
+                                <p><strong>I</strong> - Planejar a comunicação institucional da Secretaria;<br>
+                                <strong>II</strong> - Produzir conteúdo sobre as ações da Secretaria;<br>
+                                <strong>III</strong> - Assessorar o Secretário em comunicação pública;<br>
+                                <strong>IV</strong> - Coordenar o relacionamento com a imprensa;<br>
+                                <strong>V</strong> - Organizar eventos de comunicação;<br>
+                                <strong>VI</strong> - Articular-se com a Secretaria Municipal de Comunicação.</p>
+                            </div>
+
+                            <h3>Seção II<br>Do Departamento de Planejamento e Gestão Orçamentária</h3>
+                            
+                            <div class="article">
+                                <p><strong>Art. 9º</strong> - Ao Departamento de Planejamento e Gestão Orçamentária compete:</p>
+                                
+                                <p><strong>I - Planejamento Estratégico:</strong><br>
+                                a) Coordenar a elaboração do planejamento estratégico municipal;<br>
+                                b) Desenvolver metodologias de planejamento;<br>
+                                c) Elaborar estudos prospectivos e cenários;<br>
+                                d) Coordenar a formulação de políticas integradas.</p>
+
+                                <p><strong>II - Planejamento Territorial:</strong><br>
+                                a) Coordenar a elaboração do Plano Diretor Municipal;<br>
+                                b) Desenvolver estudos de ordenamento territorial;<br>
+                                c) Elaborar planos setoriais de desenvolvimento;<br>
+                                d) Monitorar indicadores urbanos.</p>
+
+                                <p><strong>III - Gestão Orçamentária:</strong><br>
+                                a) Coordenar a elaboração do PPA, LDO e LOA;<br>
+                                b) Orientar os órgãos na programação orçamentária;<br>
+                                c) Consolidar as propostas orçamentárias setoriais;<br>
+                                d) Monitorar a execução orçamentária e financeira.</p>
+
+                                <p><strong>IV - Modernização e Informação:</strong><br>
+                                a) Propor projetos de modernização administrativa;<br>
+                                b) Implementar metodologias de gestão por resultados;<br>
+                                c) Desenvolver sistemas de informação;<br>
+                                d) Coordenar observatório de políticas públicas.</p>
+
+                                <p><strong>V - Monitoramento e Avaliação:</strong><br>
+                                a) Desenvolver sistema de indicadores;<br>
+                                b) Monitorar programas e projetos;<br>
+                                c) Realizar avaliação de políticas públicas;<br>
+                                d) Produzir relatórios gerenciais.</p>
+                            </div>
+
+                            <h3>Seção III<br>Do Departamento de Projetos e Captação de Recursos</h3>
+                            
+                            <div class="article">
+                                <p><strong>Art. 10</strong> - Ao Departamento de Projetos e Captação de Recursos compete:</p>
+                                
+                                <p><strong>I - Captação de Recursos:</strong><br>
+                                a) Prospectar fontes de financiamento;<br>
+                                b) Mapear editais e oportunidades;<br>
+                                c) Desenvolver estratégias de captação;<br>
+                                d) Manter cadastro de fontes financiadoras.</p>
+
+                                <p><strong>II - Elaboração de Projetos:</strong><br>
+                                a) Elaborar projetos técnicos para captação;<br>
+                                b) Desenvolver propostas para editais;<br>
+                                c) Estruturar planos de trabalho;<br>
+                                d) Assessorar órgãos na elaboração de projetos.</p>
+
+                                <p><strong>III - Gestão de Convênios:</strong><br>
+                                a) Gerenciar a execução de convênios;<br>
+                                b) Monitorar cronogramas e metas;<br>
+                                c) Coordenar prestações de contas;<br>
+                                d) Manter sistema de controle.</p>
+
+                                <p><strong>IV - Parcerias Estratégicas:</strong><br>
+                                a) Identificar oportunidades de parcerias;<br>
+                                b) Estruturar modelos de PPPs;<br>
+                                c) Elaborar estudos de viabilidade;<br>
+                                d) Articular cooperações técnicas.</p>
+                            </div>
+
+                            <h3>Seção IV<br>Do Departamento de Coordenação Governamental</h3>
+                            
+                            <div class="article">
+                                <p><strong>Art. 11</strong> - Ao Departamento de Coordenação Governamental compete:</p>
+                                
+                                <p><strong>I - Coordenação Política:</strong><br>
+                                a) Coordenar a execução das decisões do Prefeito;<br>
+                                b) Acompanhar a implementação do programa de governo;<br>
+                                c) Supervisionar projetos prioritários;<br>
+                                d) Coordenar ações emergenciais.</p>
+
+                                <p><strong>II - Secretaria de Governo:</strong><br>
+                                a) Secretariar reuniões do secretariado;<br>
+                                b) Elaborar pautas e atas de reuniões;<br>
+                                c) Coordenar grupos de trabalho intersetoriais;<br>
+                                d) Facilitar a comunicação entre secretarias.</p>
+
+                                <p><strong>III - Relações Institucionais:</strong><br>
+                                a) Coordenar relacionamento com o Poder Legislativo;<br>
+                                b) Representar o município perante outros entes;<br>
+                                c) Articular pleitos e demandas municipais;<br>
+                                d) Coordenar participação em fóruns.</p>
+
+                                <p><strong>IV - Atos Oficiais:</strong><br>
+                                a) Coordenar elaboração de decretos e portarias;<br>
+                                b) Supervisionar a publicação oficial;<br>
+                                c) Manter arquivo de atos normativos;<br>
+                                d) Orientar sobre técnica legislativa.</p>
+
+                                <p><strong>V - Participação Social:</strong><br>
+                                a) Coordenar diálogo com a sociedade civil;<br>
+                                b) Facilitar processos participativos;<br>
+                                c) Coordenar audiências públicas;<br>
+                                d) Coordenar funcionamento dos conselhos municipais.</p>
+
+                                <p><strong>VI - Cerimonial:</strong><br>
+                                a) Organizar agenda oficial do Prefeito;<br>
+                                b) Coordenar cerimonial público;<br>
+                                c) Organizar eventos oficiais;<br>
+                                d) Supervisionar protocolo municipal.</p>
+                            </div>
+                        </div>
+
+                        <div class="document-chapter">
+                            <h2>CAPÍTULO IV<br>DO SISTEMA MUNICIPAL DE PLANEJAMENTO</h2>
+                            
+                            <div class="article">
+                                <p><strong>Art. 12</strong> - O Sistema Municipal de Planejamento - SMP constitui o conjunto articulado de órgãos, instrumentos e processos destinados a promover o planejamento integrado do desenvolvimento municipal.</p>
+                            </div>
+
+                            <div class="article">
+                                <p><strong>Art. 13</strong> - São princípios do SMP:</p>
+                                <p><strong>I</strong> - Integração entre instrumentos de planejamento;<br>
+                                <strong>II</strong> - Participação democrática;<br>
+                                <strong>III</strong> - Transparência dos atos;<br>
+                                <strong>IV</strong> - Sustentabilidade e visão de longo prazo;<br>
+                                <strong>V</strong> - Eficiência das políticas públicas.</p>
+                            </div>
+
+                            <div class="article">
+                                <p><strong>Art. 14</strong> - O SMP será composto por:</p>
+                                
+                                <p><strong>I - Instâncias de Coordenação:</strong><br>
+                                a) SEMPLA, como órgão central;<br>
+                                b) Comitê de Governança Estratégica;<br>
+                                c) Câmaras Técnicas Setoriais.</p>
+
+                                <p><strong>II - Instâncias de Participação:</strong><br>
+                                a) Conselho Municipal de Desenvolvimento;<br>
+                                b) Fóruns de Planejamento Participativo;<br>
+                                c) Conferências Municipais;<br>
+                                d) Plataforma Digital de Participação.</p>
+
+                                <p><strong>III - Instrumentos:</strong><br>
+                                a) Plano Diretor Municipal;<br>
+                                b) Plano Plurianual;<br>
+                                c) Planos Setoriais;<br>
+                                d) Sistema de Informações.</p>
+                            </div>
+
+                            <div class="article">
+                                <p><strong>Art. 15</strong> - O funcionamento do SMP será regulamentado por decreto no prazo de 90 dias.</p>
+                            </div>
+                        </div>
+
+                        <div class="document-chapter">
+                            <h2>CAPÍTULO V<br>DAS DISPOSIÇÕES FINAIS</h2>
+                            
+                            <div class="article">
+                                <p><strong>Art. 16</strong> - A SEMPLA atuará integrada com os demais órgãos municipais, especialmente Controladoria, Procuradoria, Secretarias de Administração, Finanças e Comunicação.</p>
+                            </div>
+
+                            <div class="article">
+                                <p><strong>Art. 17</strong> - Ficam criados os cargos de provimento em comissão necessários ao funcionamento da SEMPLA, conforme Anexo I, observando-se a Lei Complementar Municipal nº 0077/2025.</p>
+                            </div>
+
+                            <div class="article">
+                                <p><strong>Art. 18</strong> - Ficam criados os cargos efetivos necessários, conforme Anexo II, a serem providos por concurso público.</p>
+                            </div>
+
+                            <div class="article">
+                                <p><strong>Art. 19</strong> - As funções de Casa Civil serão transferidas para o Departamento de Coordenação Governamental conforme cronograma em decreto.</p>
+                            </div>
+
+                            <div class="article">
+                                <p><strong>Art. 20</strong> - O Poder Executivo regulamentará esta Lei no prazo de 90 dias.</p>
+                            </div>
+
+                            <div class="article">
+                                <p><strong>Art. 21</strong> - As despesas decorrentes correrão por conta das dotações orçamentárias próprias.</p>
+                            </div>
+
+                            <div class="article">
+                                <p><strong>Art. 22</strong> - Esta Lei entra em vigor na data de sua publicação.</p>
+                            </div>
+
+                            <div class="article">
+                                <p><strong>Art. 23</strong> - Revogam-se as disposições em contrário.</p>
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; margin: 3rem 0; padding: 1.5rem; background: var(--secondary); border-radius: 8px;">
+                            <p>Barcarena, ___ de __________ de 2025.</p>
+                            <br>
+                            <p><strong>_________________________________________________</strong><br>
+                            <strong>PREFEITO MUNICIPAL DE BARCARENA</strong></p>
+                        </div>
+
+                        <div class="document-chapter">
+                            <h2>ANEXOS</h2>
+                            
+                            <h3>ANEXO I - QUADRO DE CARGOS EM COMISSÃO</h3>
+                            
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>CARGO</th>
+                                        <th>CÓDIGO CPC</th>
+                                        <th>VALOR (R$)</th>
+                                        <th>QUANTIDADE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Secretário Municipal</strong></td>
+                                        <td><em>Agente Político</em></td>
+                                        <td><em>Subsídio</em></td>
+                                        <td>01</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Secretário Adjunto</strong></td>
+                                        <td>CPC 09</td>
+                                        <td>10.584,00</td>
+                                        <td>01</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Diretor de Departamento</strong></td>
+                                        <td>CPC 08</td>
+                                        <td>7.408,80</td>
+                                        <td>03</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Chefe de Gabinete</strong></td>
+                                        <td>CPC 07</td>
+                                        <td>6.200,00</td>
+                                        <td>01</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Assessor Jurídico</strong></td>
+                                        <td>CPC 06</td>
+                                        <td>5.295,98</td>
+                                        <td>01</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Assessor de Comunicação</strong></td>
+                                        <td>CPC 06</td>
+                                        <td>5.295,98</td>
+                                        <td>01</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Coordenador</strong></td>
+                                        <td>CPC 05</td>
+                                        <td>4.500,00</td>
+                                        <td>06</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Assessor Técnico</strong></td>
+                                        <td>CPC 03</td>
+                                        <td>2.961,00</td>
+                                        <td>04</td>
+                                    </tr>
+                                    <tr style="background: var(--primary); color: white; font-weight: bold;">
+                                        <td><strong>TOTAL DE CARGOS CPC</strong></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><strong>18</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h4>ESTRUTURA HIERÁRQUICA</h4>
+                            
+                            <div style="background: var(--secondary); padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                                <h5><strong>Nível I - Direção Superior</strong></h5>
+                                <ul>
+                                    <li>Secretário Municipal (Agente Político)</li>
+                                    <li>Secretário Adjunto (CPC 09)</li>
+                                </ul>
+
+                                <h5><strong>Nível II - Direção Executiva</strong></h5>
+                                <ul>
+                                    <li>03 Diretores de Departamento (CPC 08)</li>
+                                </ul>
+
+                                <h5><strong>Nível III - Chefia e Assessoramento</strong></h5>
+                                <ul>
+                                    <li>Chefe de Gabinete (CPC 07)</li>
+                                    <li>Assessor Jurídico (CPC 06)</li>
+                                    <li>Assessor de Comunicação (CPC 06)</li>
+                                </ul>
+
+                                <h5><strong>Nível IV - Coordenação</strong></h5>
+                                <ul>
+                                    <li>06 Coordenadores (CPC 05) - 2 por departamento</li>
+                                </ul>
+
+                                <h5><strong>Nível V - Assessoramento Técnico</strong></h5>
+                                <ul>
+                                    <li>04 Assessores Técnicos (CPC 03)</li>
+                                </ul>
+                            </div>
+
+                            <h3>ANEXO II - QUADRO DE SERVIDORES EFETIVOS</h3>
+                            
+                            <h4>CARGOS DE NÍVEL SUPERIOR</h4>
+                            
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>CARGO</th>
+                                        <th>DEPTO. PLANEJAMENTO</th>
+                                        <th>DEPTO. PROJETOS</th>
+                                        <th>DEPTO. COORDENAÇÃO</th>
+                                        <th>GABINETE</th>
+                                        <th>TOTAL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Gestor Público</strong></td>
+                                        <td>02</td>
+                                        <td>02</td>
+                                        <td>02</td>
+                                        <td>01</td>
+                                        <td><strong>07</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Administrador</strong></td>
+                                        <td>01</td>
+                                        <td>01</td>
+                                        <td>01</td>
+                                        <td>-</td>
+                                        <td><strong>03</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Engenheiro Civil</strong></td>
+                                        <td>01</td>
+                                        <td>01</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td><strong>02</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Contador</strong></td>
+                                        <td>02</td>
+                                        <td>01</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td><strong>03</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Advogado</strong></td>
+                                        <td>-</td>
+                                        <td>01</td>
+                                        <td>01</td>
+                                        <td>01</td>
+                                        <td><strong>03</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Analista de Sistemas</strong></td>
+                                        <td>01</td>
+                                        <td>01</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td><strong>02</strong></td>
+                                    </tr>
+                                    <tr style="background: var(--accent); color: white; font-weight: bold;">
+                                        <td><strong>SUBTOTAL SUPERIOR</strong></td>
+                                        <td><strong>07</strong></td>
+                                        <td><strong>07</strong></td>
+                                        <td><strong>04</strong></td>
+                                        <td><strong>02</strong></td>
+                                        <td><strong>20</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h4>CARGOS DE NÍVEL MÉDIO</h4>
+                            
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>CARGO</th>
+                                        <th>DEPTO. PLANEJAMENTO</th>
+                                        <th>DEPTO. PROJETOS</th>
+                                        <th>DEPTO. COORDENAÇÃO</th>
+                                        <th>GABINETE</th>
+                                        <th>TOTAL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Assistente de Administração</strong></td>
+                                        <td>03</td>
+                                        <td>02</td>
+                                        <td>03</td>
+                                        <td>02</td>
+                                        <td><strong>10</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Agente Administrativo</strong></td>
+                                        <td>02</td>
+                                        <td>02</td>
+                                        <td>03</td>
+                                        <td>01</td>
+                                        <td><strong>08</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Agente de Serviços Gerais</strong></td>
+                                        <td>01</td>
+                                        <td>01</td>
+                                        <td>01</td>
+                                        <td>01</td>
+                                        <td><strong>04</strong></td>
+                                    </tr>
+                                    <tr style="background: var(--accent); color: white; font-weight: bold;">
+                                        <td><strong>SUBTOTAL MÉDIO</strong></td>
+                                        <td><strong>06</strong></td>
+                                        <td><strong>05</strong></td>
+                                        <td><strong>07</strong></td>
+                                        <td><strong>04</strong></td>
+                                        <td><strong>22</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h4>CONSOLIDAÇÃO GERAL</h4>
+                            
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>NÍVEL</th>
+                                        <th>TOTAL DE CARGOS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Superior</strong></td>
+                                        <td><strong>20</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Médio</strong></td>
+                                        <td><strong>22</strong></td>
+                                    </tr>
+                                    <tr style="background: var(--primary); color: white; font-weight: bold;">
+                                        <td><strong>TOTAL GERAL</strong></td>
+                                        <td><strong>42</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h3>ANEXO III - ORGANOGRAMA SEMPLA</h3>
+                            
+                            <div style="background: var(--secondary); padding: 1.5rem; border-radius: 8px; margin: 1rem 0; font-family: 'Courier New', monospace;">
+                                <pre style="margin: 0; font-size: 0.9rem; line-height: 1.4;">
+                        PREFEITO MUNICIPAL
+                               |
+                    SECRETÁRIO MUNICIPAL
+                        (Agente Político)
+                               |
+                    SECRETÁRIO ADJUNTO
+                         (CPC 09)
+                               |
+               _______________|_______________
+              |                               |
+       CHEFE DE GABINETE              SISTEMA MUNICIPAL
+           (CPC 07)                   DE PLANEJAMENTO
+              |
+       _______|_______
+      |               |
+   ASSESSOR         ASSESSOR
+   JURÍDICO         COMUNICAÇÃO
+   (CPC 06)         (CPC 06)
+              |
+       _______|_______________________
+      |               |               |
+   DIRETOR         DIRETOR         DIRETOR
+ DEPTO. PLAN.    DEPTO. PROJ.    DEPTO. COORD.
+   (CPC 08)        (CPC 08)        (CPC 08)
+      |               |               |
+   2 COORD.        2 COORD.        2 COORD.
+   (CPC 05)        (CPC 05)        (CPC 05)
+                                </pre>
+                            </div>
+
+                            <div style="text-align: center; margin: 3rem 0 1rem 0; padding: 1.5rem; background: rgba(30, 64, 175, 0.05); border-radius: 8px; border: 1px solid var(--border);">
+                                <p><em><strong>Este documento foi elaborado em conformidade com a Constituição Federal, Lei Orgânica Municipal de Barcarena e Lei Complementar nº 0077/2025.</strong></em></p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // Variáveis globais
+        let currentFilter = 'all';
+        let searchTerm = '';
+        let modal, modalTitle, modalBody, modalClose, searchInput, cards, filterButtons;
+
+        // Inicialização
+        function init() {
+            try {
+                updateDebug('Iniciando sistema...');
+                
+                // Obter elementos DOM
+                modal = document.getElementById('modal');
+                modalTitle = document.getElementById('modal-title');
+                modalBody = document.getElementById('modal-body');
+                modalClose = document.getElementById('modal-close');
+                searchInput = document.getElementById('searchInput');
+                cards = document.querySelectorAll('.card');
+                filterButtons = document.querySelectorAll('.filter-btn');
+
+                updateDebug('Elementos DOM encontrados', {
+                    modal: !!modal,
+                    cards: cards.length,
+                    buttons: filterButtons.length
+                });
+
+                // Verificar se todos os elementos necessários existem
+                if (!modal || !modalTitle || !modalBody || !modalClose || !searchInput || cards.length === 0) {
+                    throw new Error('Elementos DOM não encontrados');
+                }
+
+                // Configurar event listeners
+                setupEventListeners();
+                
+                // Atualizar status
+                const statusIndicator = document.getElementById('status-indicator');
+                if (statusIndicator) {
+                    statusIndicator.innerHTML = '✅ Sistema funcionando offline - Clique nos cards para explorar!';
+                    statusIndicator.style.color = '#059669';
+                }
+
+                updateDebug('Sistema inicializado com sucesso');
+                
+            } catch (error) {
+                console.error('Erro na inicialização:', error);
+                updateDebug('Erro: ' + error.message);
+                
+                const statusIndicator = document.getElementById('status-indicator');
+                if (statusIndicator) {
+                    statusIndicator.innerHTML = '❌ Erro na inicialização - Verifique o console';
+                    statusIndicator.style.color = '#dc2626';
+                }
+            }
+        }
+
+        // Configurar event listeners
+        function setupEventListeners() {
+            try {
+                // Cards
+                cards.forEach((card, index) => {
+                    card.addEventListener('click', () => {
+                        const modalType = card.dataset.modal;
+                        console.log('Card clicado:', modalType);
+                        openModal(modalType);
+                    });
+                    
+                    card.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            openModal(card.dataset.modal);
+                        }
+                    });
+                    
+                    card.setAttribute('tabindex', '0');
+                    card.setAttribute('role', 'button');
+                });
+
+                // Modal
+                modalClose.addEventListener('click', closeModal);
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) closeModal();
+                });
+
+                // Search
+                searchInput.addEventListener('input', (e) => {
+                    searchTerm = e.target.value.toLowerCase();
+                    filterCards();
+                });
+
+                // Filters
+                filterButtons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        currentFilter = btn.dataset.filter;
+                        
+                        filterButtons.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        
+                        filterCards();
+                    });
+                });
+
+                // Keyboard
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && modal.classList.contains('active')) {
+                        closeModal();
+                    }
+                });
+
+                updateDebug('Event listeners configurados');
+                
+            } catch (error) {
+                console.error('Erro ao configurar event listeners:', error);
+                updateDebug('Erro nos event listeners: ' + error.message);
+            }
+        }
+
+        // Abrir modal
+        function openModal(type) {
+            try {
+                const data = sempla[type];
+                if (!data) {
+                    console.error('Dados não encontrados para:', type);
+                    return;
+                }
+
+                modalTitle.textContent = data.title;
+                modalBody.innerHTML = generateModalContent(type, data);
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                modalClose.focus();
+                console.log('Modal aberto:', type);
+                
+            } catch (error) {
+                console.error('Erro ao abrir modal:', error);
+                updateDebug('Erro no modal: ' + error.message);
+            }
+        }
+
+        // Fechar modal
+        function closeModal() {
+            try {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                console.log('Modal fechado');
+            } catch (error) {
+                console.error('Erro ao fechar modal:', error);
+            }
+        }
+
+        // Gerar conteúdo do modal
+        function generateModalContent(type, data) {
+            try {
+                switch (type) {
+                    case 'estrutura':
+                        return `
+                            <div>
+                                <p>${data.description}</p>
+                                ${data.organograma}
+                            </div>
+                        `;
+
+                    case 'planejamento':
+                    case 'projetos':
+                    case 'coordenacao':
+                        return `
+                            <div>
+                                <p>${data.description}</p>
+                                <div class="competencies-list">
+                                    ${data.competencias.map(comp => `
+                                        <div class="competency-item" onclick="toggleCompetency(this)">
+                                            <div class="competency-title">${comp.area}</div>
+                                            <div class="competency-description">Clique para ver detalhes</div>
+                                            <div class="competency-details">
+                                                <ul>
+                                                    ${comp.items.map(item => `<li>${item}</li>`).join('')}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+
+                    case 'competencias':
+                        return `
+                            <div>
+                                <p>${data.description}</p>
+                                <div class="competencies-list">
+                                    ${data.lista.map((comp, index) => `
+                                        <div class="competency-item">
+                                            <div class="competency-title">Competência ${index + 1}</div>
+                                            <div class="competency-description">${comp}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+
+                    case 'cargos':
+                        return `
+                            <div>
+                                <p>${data.description}</p>
+                                <h3>Cargos Comissionados</h3>
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Cargo</th>
+                                            <th>Código</th>
+                                            <th>Valor</th>
+                                            <th>Quantidade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${data.comissionados.map(cargo => `
+                                            <tr>
+                                                <td>${cargo.cargo}</td>
+                                                <td>${cargo.codigo}</td>
+                                                <td>${cargo.valor}</td>
+                                                <td>${cargo.quantidade}</td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        `;
+
+                    case 'sistema':
+                        return `
+                            <div>
+                                <p>${data.description}</p>
+                                <h3>Princípios do SMP</h3>
+                                <div class="competencies-list">
+                                    ${data.principios.map(principio => `
+                                        <div class="competency-item">
+                                            <div class="competency-description">${principio}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+
+                    case 'gabinete':
+                        return `
+                            <div>
+                                <p>${data.description}</p>
+                                <div class="competencies-list">
+                                    ${data.cargos.map(cargo => `
+                                        <div class="competency-item" onclick="toggleCompetency(this)">
+                                            <div class="competency-title">${cargo.cargo}</div>
+                                            <div class="competency-description">Clique para ver competências</div>
+                                            <div class="competency-details">
+                                                <ul>
+                                                    ${cargo.competencias.map(comp => `<li>${comp}</li>`).join('')}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+
+                    case 'minuta':
+                        return `
+                            <div>
+                                <p>${data.description}</p>
+                                ${data.conteudo}
+                            </div>
+                        `;
+
+                    default:
+                        return '<p>Conteúdo não encontrado.</p>';
+                }
+            } catch (error) {
+                console.error('Erro ao gerar conteúdo:', error);
+                return '<p>Erro ao carregar conteúdo.</p>';
+            }
+        }
+
+        // Toggle competency details
+        function toggleCompetency(element) {
+            try {
+                const details = element.querySelector('.competency-details');
+                const isActive = details.classList.contains('active');
+                
+                // Close all others
+                document.querySelectorAll('.competency-details.active').forEach(detail => {
+                    detail.classList.remove('active');
+                });
+                
+                // Toggle current
+                if (!isActive) {
+                    details.classList.add('active');
+                }
+            } catch (error) {
+                console.error('Erro ao toggle competency:', error);
+            }
+        }
+
+        // Filter cards
+        function filterCards() {
+            try {
+                cards.forEach(card => {
+                    const category = card.dataset.category;
+                    const title = card.querySelector('.card-title').textContent.toLowerCase();
+                    const description = card.querySelector('.card-description').textContent.toLowerCase();
+                    
+                    const matchesFilter = currentFilter === 'all' || category === currentFilter;
+                    const matchesSearch = searchTerm === '' || 
+                                        title.includes(searchTerm) || 
+                                        description.includes(searchTerm);
+                    
+                    card.style.display = matchesFilter && matchesSearch ? 'block' : 'none';
+                });
+            } catch (error) {
+                console.error('Erro ao filtrar cards:', error);
+            }
+        }
+
+        // Função global para toggle
+        window.toggleCompetency = toggleCompetency;
+
+        // Inicializar quando o DOM estiver pronto
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            // DOM já carregado
+            setTimeout(init, 100);
+        }
+
+        // Fallback adicional
+        window.addEventListener('load', () => {
+            if (!modal) {
+                setTimeout(init, 200);
+            }
+        });
+
+        updateDebug('JavaScript carregado');
+    </script>
+</body>
+</html>
