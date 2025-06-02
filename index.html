@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolução Terapêutica - Miguel Joaquim</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: #f8fafc;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 20px;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .patient-info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-weight: 600;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .navigation {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #94a3b8;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .nav-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            color: #f8fafc;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            color: white;
+            border-color: #3b82f6;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 15px;
+        }
+
+        .card-subtitle {
+            color: #6366f1;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1));
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(239, 68, 68, 0.1));
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #10b981);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -37px;
+            top: 30px;
+            width: 15px;
+            height: 15px;
+            background: #3b82f6;
+            border-radius: 50%;
+            border: 3px solid #0f172a;
+            box-shadow: 0 0 0 3px #3b82f6;
+        }
+
+        .period-badge {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .therapy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .therapy-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .therapy-card:hover {
+            transform: translateY(-3px);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+        }
+
+        .therapy-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .therapy-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3b82f6;
+        }
+
+        .list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        .list li::before {
+            content: '•';
+            color: #3b82f6;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .progress-list li::before {
+            content: '✓';
+            color: #10b981;
+        }
+
+        .diagnosis-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .diagnosis-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(59, 130, 246, 0.1));
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .diagnosis-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .diagnosis-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 10px;
+        }
+
+        .diagnosis-code {
+            background: rgba(59, 130, 246, 0.2);
+            color: #94a3b8;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .recommendation-item {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #06b6d4;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .recommendation-item:hover {
+            background: rgba(59, 130, 246, 0.15);
+            transform: translateX(5px);
+        }
+
+        .recommendation-title {
+            font-weight: 600;
+            color: #06b6d4;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .priority-badge {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            float: right;
+        }
+
+        .priority-alta {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .priority-essencial {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .priority-fundamental {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-buttons {
+                justify-content: center;
+            }
+            
+            .nav-btn {
+                padding: 10px 15px;
+                font-size: 0.85rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .therapy-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline {
+                padding-left: 20px;
+            }
+            
+            .timeline-item::before {
+                left: -27px;
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #64748b;
+            border-top: 1px solid rgba(71, 85, 105, 0.3);
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Evolução Terapêutica</h1>
+            <div class="patient-info">
+                <h2 style="color: white; margin-bottom: 15px;">Miguel Joaquim Magno Costa</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Data de Nascimento</div>
+                        <div class="info-value">20/07/2018</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Idade Atual</div>
+                        <div class="info-value">6 anos</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Período de Acompanhamento</div>
+                        <div class="info-value">2020-2025</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Última Atualização</div>
+                        <div class="info-value">29/05/2025</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navigation">
+            <div class="nav-buttons">
+                <button class="nav-btn active" onclick="showSection('overview')">📊 Visão Geral</button>
+                <button class="nav-btn" onclick="showSection('diagnoses')">🧠 Diagnósticos</button>
+                <button class="nav-btn" onclick="showSection('timeline')">📅 Trajetória</button>
+                <button class="nav-btn" onclick="showSection('therapies')">💙 Terapias</button>
+                <button class="nav-btn" onclick="showSection('progress')">📈 Progressos</button>
+                <button class="nav-btn" onclick="showSection('recommendations')">🎯 Recomendações</button>
+            </div>
+        </nav>
+
+        <!-- VISÃO GERAL -->
+        <section id="overview" class="section active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Anos de Acompanhamento</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Modalidades Terapêuticas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">16h</div>
+                    <div class="stat-label">Horas Semanais de Terapia</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Condições Identificadas</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3 style="color: #10b981; margin-bottom: 15px;">Perfil de Dupla Excepcionalidade</h3>
+                <p>Miguel Joaquim apresenta um perfil único onde <strong>potencialidades cognitivas notáveis coexistem com desafios significativos</strong> nas áreas de comunicação social, interação, processamento sensorial, regulação emocional, controle inibitório e flexibilidade cognitiva.</p>
+                <br>
+                <p>Esta combinação de <strong>TEA + Altas Habilidades/Superdotação</strong> explica tanto o potencial brilhante quanto as dificuldades acentuadas, demandando intervenções especializadas que considerem ambas as condições simultaneamente.</p>
+            </div>
+
+            <div class="diagnosis-cards">
+                <div class="diagnosis-card">
+                    <div class="diagnosis-title">Transtorno do Espectro Autista</div>
+                    <div class="diagnosis-code">CID 10: F84.0 / CID 11: 6A02</div>
+                    <p style="color: #cbd5e1;">Comprometimento qualitativo na interação social, comunicação, presença de interesses restritos e movimentos repetitivos.</p>
+                    <br>
+                    <div style="font-size: 0.9rem; color: #94a3b8;">
+                        <strong>Primeira suspeita:</strong> Outubro 2020<br>
+                        <strong>Confirmação:</strong> Laudos posteriores
+                    </div>
+                </div>
+                <div class="diagnosis-card">
+                    <div class="diagnosis-title">Altas Habilidades/Superdotação</div>
+                    <div class="diagnosis-code">AH/SD - Dupla Excepcionalidade</div>
+                    <p style="color: #cbd5e1;">Alto potencial cognitivo identificado em 2025, criando um perfil de dupla excepcionalidade com o TEA.</p>
+                    <br>
+                    <div style="font-size: 0.9rem; color: #94a3b8;">
+                        <strong>Identificação:</strong> Março 2025<br>
+                        <strong>Método:</strong> Avaliação Neuropsicológica
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DIAGNÓSTICOS -->
+        <section id="diagnoses" class="section">
+            <div class="card">
+                <div class="card-title">🧠 Transtorno do Espectro Autista (TEA)</div>
+                <div class="diagnosis-code">CID 10: F84.0 | CID 11: 6A02</div>
+                
+                <div class="card-subtitle">Características Identificadas:</div>
+                <ul class="list">
+                    <li>Atraso no desenvolvimento neuropsicomotor</li>
+                    <li>Prejuízos na comunicação e interação social</li>
+                    <li>Padrões restritos e repetitivos de comportamento</li>
+                    <li>Dificuldades no contato visual sustentado</li>
+                    <li>Padrões de brincar restritos (enfileirar carrinhos)</li>
+                    <li>Transtornos sensoriais</li>
+                    <li>Movimentos repetitivos</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-title">⭐ Altas Habilidades/Superdotação (AH/SD)</div>
+                <div class="diagnosis-code">Identificação: Março 2025</div>
+                
+                <div class="card-subtitle">Evidências Identificadas:</div>
+                <ul class="list">
+                    <li>Curiosidade extrema</li>
+                    <li>Vasta capacidade de armazenamento de informações (memória)</li>
+                    <li>Raciocínio lógico avançado para a idade</li>
+                    <li>Vocabulário rico</li>
+                    <li>Capacidade de fazer conexões complexas</li>
+                    <li>Interesses focados: geografia, bíblia, anatomia, matemática</li>
+                    <li>Desempenho "Superior" (percentil 100%) na Figura Complexa de Rey</li>
+                    <li>Habilidades excepcionais de percepção visual e planejamento</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🔄 Disfunção de Integração Sensorial</div>
+                <div class="diagnosis-code">Tipo: Modulação - Hiperresposta</div>
+                
+                <div class="therapy-grid">
+                    <div style="background: rgba(239, 68, 68, 0.1); padding: 15px; border-radius: 10px;">
+                        <div class="card-subtitle">Manifestações:</div>
+                        <ul class="list">
+                            <li>Hiper-responsividade tátil e auditiva</li>
+                            <li>Busca por estímulos proprioceptivos</li>
+                            <li>Dificuldades interoceptivas</li>
+                            <li>Problemas de controle postural</li>
+                        </ul>
+                    </div>
+                    <div style="background: rgba(245, 158, 11, 0.1); padding: 15px; border-radius: 10px;">
+                        <div class="card-subtitle">Impactos:</div>
+                        <ul class="list">
+                            <li>Nível de alerta e excitação</li>
+                            <li>Constipação crônica funcional/sensorial</li>
+                            <li>Participação em atividades</li>
+                            <li>Regulação comportamental</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRAJETÓRIA -->
+        <section id="timeline" class="section">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="period-badge">2020-2021 | PERÍODO INICIAL</div>
+                    <h3 style="color: #f8fafc; margin-bottom: 10px;">Identificação e Primeiras Intervenções</h3>
+                    
+                    <div class="highlight-box">
+                        <h4 style="color: #10b981;">Marco Inicial</h4>
+                        <p><strong>8 meses:</strong> Episódio de ausência de reação a estímulos sonoros intensos (fogos de artifício) - descartada hipótese de déficit auditivo, mas acendeu alerta.</p>
+                        <p><strong>Primeiros sinais:</strong> Dificuldades no contato visual sustentado e padrões de brincar restritos.</p>
+                    </div>
+
+                    <div class="therapy-grid">
+                        <div class="therapy-card">
+                            <div class="therapy-title">
+                                <span class="therapy-icon"></span>
+                                📋 Avaliação Inicial
+                            </div>
+                            <p><strong>Dezembro 2020 (ARIMA):</strong> Avaliação inicial</p>
+                            <p><strong>Outubro 2020:</strong> Laudo médico - suspeita de TEA</p>
+                        </div>
+                        <div class="therapy-card">
+                            <div class="therapy-title">
+                                <span class="therapy-icon"></span>
+                                🗣️ Fonoaudiologia
+                            </div>
+                            <p><strong>Início 2021:</strong> Dificuldades significativas na comunicação</p>
+                            <p><strong>Novembro 2021:</strong> Progressos com aumento do vocabulário</p>
+                        </div>
+                        <div class="therapy-card">
+                            <div class="therapy-title">
+                                <span class="therapy-icon"></span>
+                                🧠 Psicologia ABA
+                            </div>
+                            <p><strong>Foco:</strong> Desafios comportamentais e interação social</p>
+                            <p><strong>Objetivos:</strong> Comunicação funcional, engajamento</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="period-badge">2022-2023 | CONSOLIDAÇÃO</div>
+                    <h3 style="color: #f8fafc; margin-bottom: 10px;">Consolidação e Novos Desafios</h3>
+                    
+                    <div class="challenge-box">
+                        <h4 style="color: #f59e0b;">Desafios da Adaptação Escolar</h4>
+                        <p>Dificuldades significativas na adaptação escolar com regressão comportamental. Complexidade do ambiente escolar interagindo com dificuldades em modulação sensorial, controle inibitório e flexibilidade cognitiva.</p>
+                    </div>
+
+                    <div class="therapy-grid">
+                        <div class="therapy-card">
+                            <div class="therapy-title">
+                                <span class="therapy-icon"></span>
+                                📊 Reafirmação Diagnóstica
+                            </div>
+                            <p><strong>Agosto 2022:</strong> TEA confirmado (Dra. Amira)</p>
+                            <p><strong>Junho 2023:</strong> Recomendação de 15h/semanais</p>
+                        </div>
+                        <div class="therapy-card">
+                            <div class="therapy-title">
+                                <span class="therapy-icon"></span>
+                                🎯 Expansão Terapêutica
+                            </div>
+                            <p><strong>Fonoaudiologia:</strong> Foco na pragmática da linguagem</p>
+                            <p><strong>T.O.:</strong> Persistência de desafios sensoriais</p>
+                            <p><strong>Psicologia:</strong> Habilidades colaborativas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="period-badge">2024-2025 | AVANÇOS E PERSPECTIVAS</div>
+                    <h3 style="color: #f8fafc; margin-bottom: 10px;">Identificação da Dupla Excepcionalidade</h3>
+                    
+                    <div class="highlight-box">
+                        <h4 style="color: #10b981;">Marco Fundamental - Março 2025</h4>
+                        <p><strong>Avaliação neuropsicológica confirma Altas Habilidades/Superdotação</strong></p>
+                        <p>Nova compreensão das aparentes contradições no desenvolvimento - Perfil de dupla excepcionalidade (TEA + AH/SD)</p>
+                    </div>
+
+                    <div class="therapy-grid">
+                        <div class="therapy-card">
+                            <div class="therapy-title">
+                                <span class="therapy-icon"></span>
+                                🧪 Avaliação Neuropsicológica
+                            </div>
+                            <p><strong>Figura Complexa de Rey:</strong> Percentil 100%</p>
+                            <p><strong>Conclusão:</strong> AH/SD confirmada</p>
+                        </div>
+                        <div class="therapy-card">
+                            <div class="therapy-title">
+                                <span class="therapy-icon"></span>
+                                🏃 Psicomotricidade (Fev 2025)
+                            </div>
+                            <p><strong>Foco:</strong> Hipotonia global, equilíbrio</p>
+                            <p><strong>Progressos:</strong> Maior segurança em degraus</p>
+                        </div>
+                        <div class="therapy-card">
+                            <div class="therapy-title">
+                                <span class="therapy-icon"></span>
+                                📚 Neuropsicopedagogia
+                            </div>
+                            <p><strong>Desde Set 2023:</strong> Dificuldades vs. potencial</p>
+                            <p><strong>Destaque:</strong> Excelência em exatas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TERAPIAS -->
+        <section id="therapies" class="section">
+            <div class="highlight-box">
+                <h3 style="color: #10b981;">Volume Terapêutico Intensivo: 16 horas semanais</h3>
+                <p>Intervenção coordenada realizada em Barcarena para otimizar resultados e reduzir estresse do deslocamento.</p>
+            </div>
+
+            <div class="therapy-grid">
+                <div class="therapy-card">
+                    <div class="therapy-title">🧠 Psicologia (ABA)</div>
+                    <div class="card-subtitle">Foco Atual:</div>
+                    <ul class="list">
+                        <li>Controle inibitório e regulação emocional</li>
+                        <li>Habilidades sociais e comunicação funcional</li>
+                        <li>Flexibilidade cognitiva</li>
+                        <li>Protocolo VB-MAPP para avaliação</li>
+                    </ul>
+                    <div style="margin-top: 15px; padding: 10px; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+                        <strong style="color: #10b981;">Progresso:</strong> Melhor adaptação, menos explosões comportamentais
+                    </div>
+                </div>
+
+                <div class="therapy-card">
+                    <div class="therapy-title">🗣️ Fonoaudiologia</div>
+                    <div class="card-subtitle">Habilidades Desenvolvidas:</div>
+                    <ul class="list">
+                        <li>Compreensão de comandos</li>
+                        <li>Início e manutenção de diálogos</li>
+                        <li>Comentários sobre cotidiano</li>
+                        <li>Resposta a perguntas</li>
+                    </ul>
+                    <div style="margin-top: 15px; padding: 10px; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+                        <strong style="color: #10b981;">Progresso:</strong> Avanços significativos na comunicação expressiva
+                    </div>
+                </div>
+
+                <div class="therapy-card">
+                    <div class="therapy-title">🔄 T.O. Integração Sensorial</div>
+                    <div class="card-subtitle">Intervenções:</div>
+                    <ul class="list">
+                        <li>Modulação sensorial</li>
+                        <li>Controle postural</li>
+                        <li>Flexibilidade cognitiva</li>
+                        <li>Regulação emocional</li>
+                    </ul>
+                    <div style="margin-top: 15px; padding: 10px; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+                        <strong style="color: #10b981;">Progresso:</strong> Episódios de explosão diminuíram em frequência
+                    </div>
+                </div>
+
+                <div class="therapy-card">
+                    <div class="therapy-title">🏠 T.O. AVDs</div>
+                    <div class="card-subtitle">Estratégias:</div>
+                    <ul class="list">
+                        <li>Processo de desfralde</li>
+                        <li>Rotinas de estímulos táteis</li>
+                        <li>Percepção interoceptiva</li>
+                        <li>Processo regulatório</li>
+                    </ul>
+                    <div style="margin-top: 15px; padding: 10px; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+                        <strong style="color: #10b981;">Progresso:</strong> Melhorias na consciência corporal
+                    </div>
+                </div>
+
+                <div class="therapy-card">
+                    <div class="therapy-title">🏃 Psicomotricidade (Nova - Fev 2025)</div>
+                    <div class="card-subtitle">Objetivos:</div>
+                    <ul class="list">
+                        <li>Hipotonia global (MMII e CORE)</li>
+                        <li>Equilíbrio e reflexos</li>
+                        <li>Segurança gravitacional</li>
+                        <li>Aspectos cognitivos e emocionais</li>
+                    </ul>
+                    <div style="margin-top: 15px; padding: 10px; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+                        <strong style="color: #10b981;">Progresso:</strong> Maior segurança em degraus, menos tropeços
+                    </div>
+                </div>
+
+                <div class="therapy-card">
+                    <div class="therapy-title">📚 Neuropsicopedagogia</div>
+                    <div class="card-subtitle">Desafios e Potencial:</div>
+                    <ul class="list">
+                        <li>Dificuldades na escrita (pinça, pressão)</li>
+                        <li>Concentração em tarefas não preferidas</li>
+                        <li>Excelência em áreas de interesse</li>
+                        <li>Estratégias compensatórias</li>
+                    </ul>
+                    <div style="margin-top: 15px; padding: 10px; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+                        <strong style="color: #10b981;">Progresso:</strong> Excelente em exatas, adaptações para dificuldades
+                    </div>
+                </div>
+
+                <div class="therapy-card">
+                    <div class="therapy-title">👥 Habilidades Sociais</div>
+                    <div class="card-subtitle">Desenvolvimento:</div>
+                    <ul class="list">
+                        <li>Interação com pares</li>
+                        <li>Compreensão de nuances sociais</li>
+                        <li>Teoria da mente</li>
+                        <li>Flexibilidade em contextos sociais</li>
+                    </ul>
+                </div>
+
+                <div class="therapy-card">
+                    <div class="therapy-title">🎵 Musicoterapia</div>
+                    <div class="card-subtitle">Benefícios:</div>
+                    <ul class="list">
+                        <li>Regulação emocional</li>
+                        <li>Expressão criativa</li>
+                        <li>Desenvolvimento rítmico</li>
+                        <li>Interação social através da música</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROGRESSOS -->
+        <section id="progress" class="section">
+            <div class="highlight-box">
+                <h3 style="color: #10b981;">Avanços Notáveis (2020-2025)</h3>
+                <p>Resultado de intervenção terapêutica intensiva, contínua e coordenada, aliada ao fundamental suporte familiar.</p>
+            </div>
+
+            <div class="therapy-grid">
+                <div class="card">
+                    <div class="card-title">🗣️ Comunicação Verbal</div>
+                    <div class="card-subtitle">Evolução Significativa:</div>
+                    <ul class="progress-list">
+                        <li>Expansão do vocabulário</li>
+                        <li>Melhoria na compreensão de comandos</li>
+                        <li>Capacidade de iniciar diálogos funcionais</li>
+                        <li>Manutenção de conversações</li>
+                        <li>Comentários sobre cotidiano</li>
+                        <li>Respostas adequadas a perguntas</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">🧠 Habilidades Cognitivas</div>
+                    <div class="card-subtitle">Potencial Excepcional:</div>
+                    <ul class="progress-list">
+                        <li>Raciocínio lógico avançado</li>
+                        <li>Memória extraordinária</li>
+                        <li>Capacidade de aprendizado em áreas de interesse</li>
+                        <li>Percepção visual superior (percentil 100%)</li>
+                        <li>Planejamento e organização visuoespacial</li>
+                        <li>Capacidade de fazer conexões complexas</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">🏃 Aspectos Motores</div>
+                    <div class="card-subtitle">Melhorias Observadas:</div>
+                    <ul class="progress-list">
+                        <li>Maior segurança em subir/descer escadas</li>
+                        <li>Diminuição de tropeços</li>
+                        <li>Melhoria da segurança gravitacional</li>
+                        <li>Progresso no controle postural</li>
+                        <li>Desenvolvimento de reflexos</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">🔄 Regulação Sensorial</div>
+                    <div class="card-subtitle">Progressos Importantes:</div>
+                    <ul class="progress-list">
+                        <li>Episódios de "explosão" diminuíram</li>
+                        <li>Consciência dos movimentos peristálticos</li>
+                        <li>Espaçamento da retenção fecal</li>
+                        <li>Melhor adaptação a estímulos</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">📚 Aprendizagem Acadêmica</div>
+                    <div class="card-subtitle">Competências Desenvolvidas:</div>
+                    <ul class="progress-list">
+                        <li>Reconhecimento de letras</li>
+                        <li>Capacidade de leitura</li>
+                        <li>Habilidade de escrita</li>
+                        <li>Interpretação de textos simples</li>
+                        <li>Excelência em áreas de interesse (matemática, geografia)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">🏠 Autocuidado e Rotinas</div>
+                    <div class="card-subtitle">Autonomia Crescente:</div>
+                    <ul class="progress-list">
+                        <li>Participação em rotinas domésticas</li>
+                        <li>Melhoria em algumas AVDs</li>
+                        <li>Progresso no processo de desfralde</li>
+                        <li>Maior independência em atividades estruturadas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="therapy-grid">
+                <div style="background: linear-gradient(135deg, rgba(132, 204, 22, 0.1), rgba(34, 197, 94, 0.1)); padding: 20px; border-radius: 15px; border: 1px solid rgba(132, 204, 22, 0.3);">
+                    <div class="card-title" style="color: #84cc16;">🔍 Curiosidade Intelectual</div>
+                    <p style="color: #cbd5e1;">Demonstra curiosidade extrema e sede de conhecimento, especialmente em suas áreas de interesse: <strong>anatomia, geografia, bíblia e matemática</strong>.</p>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(234, 88, 12, 0.1)); padding: 20px; border-radius: 15px; border: 1px solid rgba(249, 115, 22, 0.3);">
+                    <div class="card-title" style="color: #f97316;">🎨 Criatividade</div>
+                    <p style="color: #cbd5e1;">Capacidade criativa consistentemente destacada pelos terapeutas, manifestando-se em diferentes contextos e atividades.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RECOMENDAÇÕES -->
+        <section id="recommendations" class="section">
+            <div class="highlight-box">
+                <h3 style="color: #10b981;">Princípio Fundamental</h3>
+                <p>Continuidade do acompanhamento multidisciplinar intensivo e coordenado, considerando a <strong>dupla excepcionalidade (TEA + AH/SD)</strong> como eixo central de todas as intervenções.</p>
+            </div>
+
+            <div class="recommendation-item">
+                <div class="recommendation-title">1. Manutenção da Intensidade Terapêutica <span class="priority-badge">Crítica</span></div>
+                <p>Manter a carga horária terapêutica recomendada (15-16 horas semanais) distribuídas entre todas as modalidades: Psicologia ABA, Fonoaudiologia, Terapia Ocupacional com Integração Sensorial, Psicomotricidade, Neuropsicopedagogia, Treinamento de Habilidades Sociais e Musicoterapia.</p>
+            </div>
+
+            <div class="recommendation-item">
+                <div class="recommendation-title">2. Abordagem Integrada da Dupla Excepcionalidade <span class="priority-badge">Crítica</span></div>
+                <p>Todas as intervenções devem considerar a interação entre TEA e AH/SD. Estimular o potencial intelectual e criatividade oferecendo desafios cognitivos adequados, ao mesmo tempo fornecendo suporte estruturado para dificuldades de comunicação social, regulação e flexibilidade.</p>
+            </div>
+
+            <div class="recommendation-item">
+                <div class="recommendation-title">3. Foco Contínuo em Regulação Emocional <span class="priority-badge priority-alta">Alta</span></div>
+                <p>Intensificar estratégias de manejo comportamental, terapia ocupacional e psicomotricidade para autorregulação, co-regulação, reconhecimento e expressão adequada de emoções, tolerância à frustração e desenvolvimento do controle inibitório.</p>
+            </div>
+
+            <div class="recommendation-item">
+                <div class="recommendation-title">4. Desenvolvimento da Flexibilidade Cognitiva <span class="priority-badge priority-alta">Alta</span></div>
+                <p>Intervenções específicas para aumentar flexibilidade de pensamento, capacidade de adaptação a mudanças e aceitação de regras e pontos de vista diferentes, utilizando estratégias lúdicas e graduais.</p>
+            </div>
+
+            <div class="recommendation-item">
+                <div class="recommendation-title">5. Continuidade do Processamento Sensorial <span class="priority-badge priority-alta">Alta</span></div>
+                <p>Manter abordagem de Integração Sensorial para modulação de respostas a estímulos, melhoria da interocepção e controle postural, oferecendo "dieta sensorial" adequada às necessidades específicas.</p>
+            </div>
+
+            <div class="recommendation-item">
+                <div class="recommendation-title">6. Ambiente Escolar Adaptado <span class="priority-badge priority-essencial">Essencial</span></div>
+                <p>Manter recomendação de matrícula em turma regular com facilitador/mediador exclusivo e capacitado. Trabalho colaborativo com equipe terapêutica e família, aplicando estratégias consistentes (PEI, adaptações, suporte social).</p>
+            </div>
+
+            <div class="recommendation-item">
+                <div class="recommendation-title">7. Envolvimento Familiar Contínuo <span class="priority-badge priority-fundamental">Fundamental</span></div>
+                <p>Participação ativa dos pais continua fundamental. Manter orientações parentais regulares, oferecendo estratégias práticas para manejo de comportamentos e promoção de ambiente doméstico estruturado e acolhedor.</p>
+            </div>
+
+            <div class="recommendation-item">
+                <div class="recommendation-title">8. Reavaliações Periódicas <span class="priority-badge priority-fundamental">Fundamental</span></div>
+                <p>Manter reavaliações multidisciplinares periódicas para monitorar progresso, ajustar objetivos terapêuticos e garantir que intervenções permaneçam alinhadas às necessidades evolutivas.</p>
+            </div>
+
+            <div class="challenge-box">
+                <h3 style="color: #f59e0b;">Áreas de Atenção Contínua</h3>
+                <p>Embora progressos notáveis tenham sido alcançados, certas áreas demandam atenção contínua:</p>
+                <div class="therapy-grid" style="margin-top: 20px;">
+                    <div style="background: rgba(239, 68, 68, 0.1); padding: 15px; border-radius: 10px;">
+                        <h4 style="color: #ef4444;">Regulação Emocional</h4>
+                        <ul class="list" style="margin-top: 10px;">
+                            <li>Tolerância à frustração</li>
+                            <li>Controle inibitório</li>
+                            <li>Manejo de transições</li>
+                        </ul>
+                    </div>
+                    <div style="background: rgba(245, 158, 11, 0.1); padding: 15px; border-radius: 10px;">
+                        <h4 style="color: #f59e0b;">Flexibilidade Cognitiva</h4>
+                        <ul class="list" style="margin-top: 10px;">
+                            <li>Adaptação a mudanças</li>
+                            <li>Aceitação de regras</li>
+                            <li>Rigidez de pensamento</li>
+                        </ul>
+                    </div>
+                    <div style="background: rgba(139, 92, 246, 0.1); padding: 15px; border-radius: 10px;">
+                        <h4 style="color: #8b5cf6;">Interação Social</h4>
+                        <ul class="list" style="margin-top: 10px;">
+                            <li>Interação com pares</li>
+                            <li>Nuances sociais</li>
+                            <li>Ambientes complexos</li>
+                        </ul>
+                    </div>
+                    <div style="background: rgba(6, 182, 212, 0.1); padding: 15px; border-radius: 10px;">
+                        <h4 style="color: #06b6d4;">Processamento Sensorial</h4>
+                        <ul class="list" style="margin-top: 10px;">
+                            <li>Modulação sensorial</li>
+                            <li>Controle postural</li>
+                            <li>Interocepção</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3 style="color: #10b981;">Perspectiva Futura</h3>
+                <p>A trajetória de Miguel Joaquim demonstra que, com suporte adequado, intensivo e individualizado, crianças com perfis complexos de dupla excepcionalidade podem alcançar progressos notáveis. A continuidade desse suporte é essencial para que ele possa desenvolver plenamente seu potencial e alcançar a maior autonomia e qualidade de vida possível.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Documento processado digitalmente | Baseado nos relatórios terapêuticos da equipe multidisciplinar</p>
+            <p>Período de acompanhamento: 2020-2025 | Última atualização: 29/05/2025</p>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Remove active class from all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add smooth animations on scroll (simplified)
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card, .therapy-card, .stat-card');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
