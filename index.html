@@ -29,3 +29,561 @@
             color: white;
             padding: 40px 20px;
             text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: #34495e;
+            color: white;
+            padding: 20px;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        
+        .section-content {
+            padding: 30px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        
+        .programa-card {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .programa-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .programa-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .programa-id {
+            background: #3498db;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .programa-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .programa-content {
+            padding: 20px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .info-item {
+            margin-bottom: 15px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            color: #333;
+            font-size: 1em;
+        }
+        
+        .valor-destaque {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        
+        .tipo-tag {
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .tipo-finalistico {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .tipo-apoio {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .eixo-tag {
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .horizonte-tag {
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.7em;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .horizonte-continuo {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+        
+        .horizonte-temporario {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .analise-box {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .analise-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .chart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .chart-bar {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .chart-label {
+            min-width: 200px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .chart-bar-fill {
+            height: 25px;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            border-radius: 3px;
+            margin: 0 10px;
+            position: relative;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .metodologia {
+            background: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .metodologia h3 {
+            color: #0c5460;
+            margin-bottom: 15px;
+        }
+        
+        .print-friendly {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .print-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        
+        .print-btn:hover {
+            background: #2980b9;
+        }
+        
+        @media print {
+            body { background: white; }
+            .section { box-shadow: none; }
+            .print-btn { display: none; }
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Relatório Analítico</h1>
+            <p>Plano Plurianual de Barcarena 2022-2025</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">Análise Estratégica e Financeira dos Programas Governamentais</p>
+        </header>
+
+        <!-- Resumo Executivo -->
+        <section class="section">
+            <div class="section-header">
+                📊 Resumo Executivo
+            </div>
+            <div class="section-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Programas Analisados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">R$ 82,6M</div>
+                        <div class="stat-label">Investimento Total</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Eixo Estratégico</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Órgãos Envolvidos</div>
+                    </div>
+                </div>
+
+                <div class="analise-box">
+                    <div class="analise-title">💡 Principais Insights</div>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Concentração no Planejamento:</strong> Ambos programas estão alinhados ao eixo de "Planejamento, Articulação Institucional e Coordenação de Governo"</li>
+                        <li><strong>Diversidade Tipológica:</strong> Equilibrio entre programa finalístico (50%) e apoio administrativo (50%)</li>
+                        <li><strong>Disparidade de Valores:</strong> O programa x1 representa 97,2% do investimento total analisado</li>
+                        <li><strong>Horizontes Distintos:</strong> Programas com estratégias de continuidade e temporária</li>
+                        <li><strong>Alinhamento ODS:</strong> Ambos contribuem para o ODS 16 (Instituições Eficazes)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Análise Financeira -->
+        <section class="section">
+            <div class="section-header">
+                💰 Análise Financeira
+            </div>
+            <div class="section-content">
+                <div class="chart-container">
+                    <h3 style="margin-bottom: 20px;">Distribuição de Investimentos por Programa</h3>
+                    <div class="chart-bar">
+                        <div class="chart-label">x1 - Ação Legislativa</div>
+                        <div class="chart-bar-fill" style="width: 97.2%;">R$ 80,3M (97,2%)</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="chart-label">x2 - Apoio Segurança</div>
+                        <div class="chart-bar-fill" style="width: 2.8%;">R$ 2,3M (2,8%)</div>
+                    </div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="analise-box">
+                        <div class="analise-title">📈 Estatísticas Financeiras</div>
+                        <div class="info-item">
+                            <div class="info-label">Valor Médio por Programa:</div>
+                            <div class="info-value valor-destaque">R$ 41.278.798,72</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Desvio Padrão:</div>
+                            <div class="info-value">R$ 55.158.286,91</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Valor Mínimo:</div>
+                            <div class="info-value">R$ 2.276.000,00</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Valor Máximo:</div>
+                            <div class="info-value">R$ 80.281.597,43</div>
+                        </div>
+                    </div>
+
+                    <div class="analise-box">
+                        <div class="analise-title">🎯 Análise de Concentração</div>
+                        <p style="margin-bottom: 15px;">
+                            <strong>Alta Concentração:</strong> O programa de Ação Legislativa concentra a maior parte dos recursos (97,2%), indicando priorização significativa nas atividades do poder legislativo municipal.
+                        </p>
+                        <p>
+                            <strong>Investimento Estratégico:</strong> O programa de apoio à segurança pública, embora com menor valor absoluto, representa investimento focado em área crítica para a população.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detalhamento dos Programas -->
+        <section class="section">
+            <div class="section-header">
+                📋 Detalhamento dos Programas
+            </div>
+            <div class="section-content">
+                <!-- Programa x1 -->
+                <div class="programa-card">
+                    <div class="programa-header">
+                        <span class="programa-id">x1</span>
+                        <div class="programa-title">Ação Legislativa</div>
+                        <span class="tipo-tag tipo-apoio">Apoio Administrativo</span>
+                        <span class="horizonte-tag horizonte-continuo">Contínuo</span>
+                    </div>
+                    <div class="programa-content">
+                        <div class="info-grid">
+                            <div>
+                                <div class="info-item">
+                                    <div class="info-label">Órgão Responsável:</div>
+                                    <div class="info-value">Câmara Municipal de Barcarena</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Período de Execução:</div>
+                                    <div class="info-value">2022-2025</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Valor do Programa:</div>
+                                    <div class="info-value valor-destaque">R$ 80.281.597,43</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="info-item">
+                                    <div class="info-label">Problema/Desafio:</div>
+                                    <div class="info-value">Fortalecimento da participação popular nas diferentes instâncias de controle e avaliação das políticas públicas</div>
+                                </div>
+                                <div class="eixo-tag">Planejamento, Articulação Institucional e Coordenação de Governo</div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Objetivo Estratégico:</div>
+                            <div class="info-value">Oportunizar, manter e aprimorar as atividades do Legislativo Municipal, subsidiando técnica e administrativamente a atuação da Câmara, mantendo as rotinas administrativas e a qualificação técnica dos Vereadores e demais servidores do Poder Legislativo.</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Justificativa (Alinhamento ODS):</div>
+                            <div class="info-value">Promover sociedades pacíficas e inclusivas para o desenvolvimento sustentável, proporcionar o acesso à justiça para todos e construir instituições eficazes, responsáveis e inclusivas a todos os níveis.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Programa x2 -->
+                <div class="programa-card">
+                    <div class="programa-header">
+                        <span class="programa-id">x2</span>
+                        <div class="programa-title">Apoio às Ações de Segurança Pública</div>
+                        <span class="tipo-tag tipo-finalistico">Finalístico</span>
+                        <span class="horizonte-tag horizonte-temporario">Temporário</span>
+                    </div>
+                    <div class="programa-content">
+                        <div class="info-grid">
+                            <div>
+                                <div class="info-item">
+                                    <div class="info-label">Órgão Responsável:</div>
+                                    <div class="info-value">Secretaria de Administração e Tesouro</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Unidade Executora:</div>
+                                    <div class="info-value">Secretaria de Segurança, Trânsito e Defesa</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Valor do Programa:</div>
+                                    <div class="info-value valor-destaque">R$ 2.276.000,00</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="info-item">
+                                    <div class="info-label">Problema/Desafio:</div>
+                                    <div class="info-value">Fortalecimento da cidadania de forma ampla e irrestrita, de maneira a assegurar e desenvolver as interações sociais, a promoção de ações integradas de segurança</div>
+                                </div>
+                                <div class="eixo-tag">Planejamento, Articulação Institucional e Coordenação de Governo</div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Objetivo Estratégico:</div>
+                            <div class="info-value">Subsidiar as articulações institucionais do governo em prol das ações de segurança pública.</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Justificativa (Alinhamento ODS):</div>
+                            <div class="info-value">Promover sociedades pacíficas e inclusivas para o desenvolvimento sustentável, proporcionar o acesso à justiça para todos e construir instituições eficazes, responsáveis e inclusivas a todos os níveis.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Análise Estratégica -->
+        <section class="section">
+            <div class="section-header">
+                🎯 Análise Estratégica
+            </div>
+            <div class="section-content">
+                <div class="info-grid">
+                    <div class="analise-box">
+                        <div class="analise-title">🏛️ Governança e Institucionalidade</div>
+                        <p>Ambos os programas estão alinhados ao fortalecimento institucional do município:</p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Poder Legislativo:</strong> Modernização e eficiência das atividades parlamentares</li>
+                            <li><strong>Segurança Pública:</strong> Articulação interinstitucional para políticas de segurança</li>
+                            <li><strong>Participação Social:</strong> Foco no controle social e transparência</li>
+                        </ul>
+                    </div>
+
+                    <div class="analise-box">
+                        <div class="analise-title">⏱️ Horizonte Temporal</div>
+                        <p><strong>Estratégia Mista:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Contínuo (x1):</strong> Atividades permanentes do legislativo municipal</li>
+                            <li><strong>Temporário (x2):</strong> Intervenções específicas em segurança pública</li>
+                        </ul>
+                        <p style="margin-top: 10px;">Esta combinação permite sustentabilidade institucional com flexibilidade para demandas emergentes.</p>
+                    </div>
+                </div>
+
+                <div class="analise-box">
+                    <div class="analise-title">🌍 Alinhamento aos Objetivos de Desenvolvimento Sustentável</div>
+                    <p>Ambos os programas contribuem diretamente para o <strong>ODS 16 - Paz, Justiça e Instituições Eficazes</strong>, especificamente:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>16.6 - Desenvolver instituições eficazes, responsáveis e transparentes</li>
+                        <li>16.7 - Garantir a tomada de decisão responsiva, inclusiva, participativa e representativa</li>
+                        <li>16.10 - Assegurar o acesso público à informação e proteger as liberdades fundamentais</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metodologia -->
+        <section class="metodologia">
+            <h3>📋 Metodologia de Análise</h3>
+            <p><strong>Fonte de Dados:</strong> Plano Plurianual de Barcarena 2022-2025</p>
+            <p><strong>Período de Análise:</strong> Quadriênio 2022-2025</p>
+            <p><strong>Critérios de Avaliação:</strong></p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>Alinhamento estratégico aos eixos de governo</li>
+                <li>Distribuição financeira e concentração de recursos</li>
+                <li>Articulação interinstitucional e complementaridade</li>
+                <li>Contribuição para os Objetivos de Desenvolvimento Sustentável</li>
+                <li>Sustentabilidade temporal e continuidade das ações</li>
+            </ul>
+        </section>
+
+        <div class="print-friendly">
+            <button class="print-btn" onclick="window.print()">🖨️ Imprimir Relatório</button>
+        </div>
+    </div>
+
+    <script>
+        // Adicionar interatividade para melhor experiência do usuário
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animação suave para os cards ao carregar
+            const cards = document.querySelectorAll('.programa-card, .stat-card, .analise-box');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
